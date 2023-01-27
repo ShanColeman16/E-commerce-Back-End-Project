@@ -30,7 +30,7 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
 
-      validate: { isDecimal: true },
+      validate: { isNumeric: true },
     },
     category_id: {
       type: DataTypes.INTEGER,
@@ -38,7 +38,13 @@ Product.init(
         model: 'Category',
         key: 'id',
       },
-    }
+    },
+    Tag: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
 
 
 
