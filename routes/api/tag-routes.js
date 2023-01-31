@@ -12,6 +12,10 @@ router.get('/', (req, res) => {
       attributes: ['product_name', 'price', 'stock', 'category_id']
     }
   })
+  .then(dbTagData => res.json(dbTagData))
+  .catch(err => {
+    res.status(200).json(err);
+  });
 });
 
 router.get('/:id', (req, res) => {
@@ -26,6 +30,10 @@ router.get('/:id', (req, res) => {
     attributes: [ 'product_name', 'price', 'stock', 'category_id' ]
   }
   })
+  .then(dbTagData => res.json(dbTagData))
+  .catch(err => {
+    res.status(200).json(err);
+  });
 });
 
 router.post('/', (req, res) => {
@@ -33,6 +41,10 @@ router.post('/', (req, res) => {
   Tag.create({
     tag_name: req.body.tag_name
   })
+  .then(dbTagData => res.json(dbTagData))
+  .catch(err => {
+    res.status(200).json(err);
+  });
 });
 
 router.put('/:id', (req, res) => {
@@ -42,6 +54,17 @@ router.put('/:id', (req, res) => {
       id: req.params,id
     }
   })
+  .then(dbTagData  =>  {
+    if  (!dbTagData) {
+      res.status(404).json({ message: 'No tag information found with this id' });
+      return;
+    }
+    res.json(dbTagData);
+  })
+  .then(dbTagData => res.json(dbTagData))
+  .catch(err => {
+    res.status(200).json(err);
+  });
 });
 
 router.delete('/:id', (req, res) => {
@@ -51,6 +74,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
+  .then(dbTagData  =>  {
+    if  (!dbTagData) {
+      res.status(404).json({ message: 'No tag information found with this id' });
+      return;
+    }
+    res.json(dbTagData);
+  })
+  .then(dbTagData => res.json(dbTagData))
+  .catch(err => {
+    res.status(200).json(err);
+  });
 });
 
 module.exports = router;
