@@ -150,6 +150,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
+  .then(dbProductData  =>  {
+    if  (!dbProductData) {
+      res.status(404).json({ message: 'No products information found with this id' });
+      return;
+    }
+    res.json(dbProductData);
+  })
+  .then(dbProductData => res.json(dbProductData))
+  .catch(err => {
+    res.status(200).json(err);
+  });
 });
 
 module.exports = router;

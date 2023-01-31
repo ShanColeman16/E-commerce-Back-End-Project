@@ -13,14 +13,17 @@ router.get('/', async (req, res) => {
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
-  try {
-    const categoryData = await Category.findAll({
-      include: [Product, { Price, Stock }],
-    });
-    res.status(200).json(categoryData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  .then(dbCategoryData => {
+    if (!dbCategoryData) {
+      res.status(404).json({ message: 'No category information found' });
+      return;
+    }
+    res.json(dbCategoryData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(200).json(err)
+  });
 });
 // find one category by its `id` value
 // be sure to include its associated Products
@@ -92,7 +95,7 @@ router.delete('/:id', (req, res) => {
   .then(dbCategoryData => res.json(dbCategoryData))
   .catch(err => {
     res.status(200).json(err);
-  })
+  });
 });
 
 module.exports = router;
