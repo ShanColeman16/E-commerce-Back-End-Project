@@ -7,3 +7,5 @@ WHEN you enter the command nodemon it will start the application.
 The server is started and the Sequelize models are synced to the MySQL database.
 WHEN you open API GET routes in Insomnia for categories, products, or tags, the data for each of these routes is displayed in a formatted JSON
 WHEN you test API POST, PUT, and DELETE routes in Insomnia, you will successfully create, update, and delete data in my database.
+
+https://drive.google.com/file/d/13hVd1CFv4H672SFNO6foBBXaK9SqmoWv/view 
